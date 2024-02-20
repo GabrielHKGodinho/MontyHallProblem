@@ -43,11 +43,13 @@ struct SimulatorView: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }label: {
                         Image(systemName: "arrow.backward")
+                            .foregroundColor(Color("red"))
                             .font(.system(size: 56))
                             .bold()
                     }
                     
                     Text("SIMULATOR")
+                        .foregroundColor(.black)
                         .font(.system(size: 56))
                         .bold()
                     
@@ -71,10 +73,11 @@ struct SimulatorView: View {
                                     }, label: {
                                         HStack{
                                             Text("-")
+                                                .foregroundStyle(.black)
                                                 .font(.system(size: 51))
                                         }
                                         .frame(width: 53, height: 53)
-                                        .background(.black)
+                                        .background(Color("darkYellow"))
                                         .clipShape(RoundedRectangle(cornerRadius: 8))
                                         
                                     })
@@ -84,7 +87,7 @@ struct SimulatorView: View {
                                             .font(.system(size: 51))
                                     }
                                     .frame(width: 164, height: 53)
-                                    .background(.gray)
+//                                    .background(Color("darkYellow"))
                                     .clipShape(RoundedRectangle(cornerRadius: 8))
                                     
                                     Button(action: {
@@ -92,10 +95,11 @@ struct SimulatorView: View {
                                     }, label: {
                                         HStack{
                                             Text("+")
+                                                .foregroundStyle(.black)
                                                 .font(.system(size: 51))
                                         }
                                         .frame(width: 53, height: 53)
-                                        .background(.black)
+                                        .background(Color("darkYellow"))
                                         .clipShape(RoundedRectangle(cornerRadius: 8))
                                         
                                     })
@@ -109,13 +113,14 @@ struct SimulatorView: View {
                                         HStack{
                                             HStack{
                                                 Text("Stay")
+                                                    .foregroundStyle(.black)
                                                     .font(.system(size: 30))
                                                     .bold()
                                                 
                                             }
                                             .padding()
                                             .frame(width: 139, height: 53)
-                                            .background(stay ? .black : .gray)
+                                            .background(stay ? Color("darkYellow") : Color("yellow"))
                                             .clipShape(RoundedRectangle(cornerRadius: 8))
                                         }
                                     }
@@ -125,13 +130,14 @@ struct SimulatorView: View {
                                         HStack{
                                             HStack{
                                                 Text("Switch")
+                                                    .foregroundStyle(.black)
                                                     .font(.system(size: 30))
                                                     .bold()
                                                 
                                             }
                                             .padding()
                                             .frame(width: 139, height: 53)
-                                            .background(!stay ? .black : .gray)
+                                            .background(!stay ? Color("darkYellow") : Color("yellow"))
                                             .clipShape(RoundedRectangle(cornerRadius: 8))
                                         }
                                     }
@@ -147,10 +153,12 @@ struct SimulatorView: View {
                             } label: {
                                 HStack{
                                     Text("SIMULATE")
+                                        .foregroundStyle(.white)
                                         .font(.system(size: 40))
+                                        .bold()
                                 }
                                 .frame(width: 300, height: 53)
-                                .background(.gray)
+                                .background(Color("red"))
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                             }
                             .padding(.trailing, 16)
@@ -170,10 +178,11 @@ struct SimulatorView: View {
                             } label: {
                                 HStack{
                                     Text("Reset")
+                                        .foregroundStyle(.black)
                                         .font(.system(size: 40))
                                 }
                                 .frame(width: 150, height: 53)
-                                .background(.gray)
+                                .background(Color("yellow"))
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                             }
                         }
@@ -188,6 +197,7 @@ struct SimulatorView: View {
                             .padding(.trailing, 40)
                             .font(.system(size: 32))
                             .bold()
+                            .foregroundStyle(.white)
                             HStack(spacing: 64){
                                 HStack {
                                     VStack(spacing: 100){
@@ -240,13 +250,14 @@ struct SimulatorView: View {
                                 self.createChartView()
                                     .frame(width: 400, height: 300)
                             }
+                            .foregroundStyle(.white)
                             .padding(.bottom, 32)
                             .padding(.top, 16)
                             .frame(maxWidth: .infinity)
                             .font(.system(size: 24))
                             .bold()
                         }
-                        .background(.gray)
+                        .background(Color("red"))
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
                     .padding(.top, 32)
@@ -254,7 +265,7 @@ struct SimulatorView: View {
             }
             .padding(.horizontal, 32)
             .padding(.vertical, 12)
-            .background(.white)
+            .background(Color("ligthYellow"))
             .opacity(transitionOpacity ? 0 : 1)
             .onAppear{
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

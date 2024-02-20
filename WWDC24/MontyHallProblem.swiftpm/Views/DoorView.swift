@@ -9,32 +9,58 @@ import SwiftUI
 
 struct DoorView: View, Identifiable {
     var id = UUID()
-    @State private var isAnimating = false
     @Binding var imageNumber : Int
-    
-    var imageName : String
+    @Binding var imageName : String
     
     var body: some View {
-        Image(imageName+"\(imageNumber)")
+        Image(imageNumber >= 5 ? "doorPlayGame"+"\(imageNumber)" : imageName+"\(imageNumber)")
             .resizable()
             .aspectRatio(contentMode: .fit)
             .padding()
     }
     
     func startAnimation() {
-        isAnimating = true
-        
         Timer.scheduledTimer(withTimeInterval: 0.07, repeats: true) { timer in
             imageNumber = (imageNumber % 7) + 1
             
             if imageNumber == 7 {
                 timer.invalidate()
-                self.isAnimating = false
             }
+        }
+    }
+    
+    func startFlashing() {
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            if imageNumber != 1 {
+                timer.invalidate()
+            } else {
+                let ligth = imageName.contains("ligth") ? "dark" : "ligth"
+                
+                let index = imageName.index(imageName.startIndex, offsetBy: 4)
+                let glow = imageName.contains("glow") ? "glow" : ""
+                switch imageName[index]{
+                case "1":
+                    imageName = "door1"+ligth+glow
+                case "2":
+                    imageName = "door2"+ligth+glow
+                case "3":
+                    imageName = "door3"+ligth+glow
+                default:
+                    fatalError("Porta desconhecida")
+                }
+            }
+            
+        }
+    }
+    
+    func correctName() {
+        if imageName.contains("dark") {
+            let index = imageName.index(imageName.startIndex, offsetBy: 4)
+            imageName = "door\(imageName[index])ligth"
         }
     }
 }
 
-//#Preview {
-//    DoorView(imageName: "Simulator")
-//}
+#Preview {
+    DoorView(imageNumber: .constant(1), imageName: .constant("door1ligth"))
+}
